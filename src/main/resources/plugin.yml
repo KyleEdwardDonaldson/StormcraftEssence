@@ -1,0 +1,31 @@
+name: Stormcraft-Essence
+version: ${project.version}
+main: dev.ked.stormcraft.essence.StormcraftEssencePlugin
+api-version: '1.21'
+author: ked
+description: Storm-fused ability system addon for Stormcraft
+website: https://ked.dev
+
+# Hard dependencies
+depend:
+  - Stormcraft
+  - Vault
+
+# Soft dependencies
+softdepend:
+  - PlaceholderAPI
+
+commands:
+  essence:
+    description: Manage storm essence abilities
+    aliases: [se, stormessence]
+    usage: /<command> [help|status|toggle|info]
+    permission: stormcraft.essence.use
+
+permissions:
+  stormcraft.essence.use:
+    description: Allow basic essence commands
+    default: true
+  stormcraft.essence.admin:
+    description: Allow admin essence commands
+    default: op

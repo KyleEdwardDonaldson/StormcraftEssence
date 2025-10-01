@@ -1,0 +1,17 @@
+dev/ked/stormcraft/essence/integration/PlaceholderAPIIntegration.class
+dev/ked/stormcraft/essence/listener/PassiveAbilityListener.class
+dev/ked/stormcraft/essence/listener/CompassInteractListener.class
+dev/ked/stormcraft/essence/persistence/PlayerDataManager$1.class
+dev/ked/stormcraft/essence/listener/EssenceAwardListener.class
+dev/ked/stormcraft/essence/ability/ActiveAbilityManager.class
+dev/ked/stormcraft/essence/persistence/PlayerDataManager.class
+dev/ked/stormcraft/essence/StormcraftEssencePlugin.class
+dev/ked/stormcraft/essence/ability/ActiveAbilityManager$2.class
+dev/ked/stormcraft/essence/config/EssenceConfig.class
+dev/ked/stormcraft/essence/ability/AbilityManager.class
+dev/ked/stormcraft/essence/model/PlayerEssenceData.class
+dev/ked/stormcraft/essence/model/PassiveAbility.class
+dev/ked/stormcraft/essence/command/EssenceCommand$1.class
+dev/ked/stormcraft/essence/ability/ActiveAbilityManager$1.class
+dev/ked/stormcraft/essence/listener/StormriderListener.class
+dev/ked/stormcraft/essence/command/EssenceCommand.class

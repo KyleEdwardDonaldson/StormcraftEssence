@@ -1,0 +1,13 @@
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/integration/PlaceholderAPIIntegration.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/listener/StormriderListener.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/config/EssenceConfig.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/listener/EssenceAwardListener.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/persistence/PlayerDataManager.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/ability/AbilityManager.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/model/PassiveAbility.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/listener/PassiveAbilityListener.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/model/PlayerEssenceData.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/command/EssenceCommand.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/listener/CompassInteractListener.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/StormcraftEssencePlugin.java
+/var/repos/Stormcraft-Essence/src/main/java/dev/ked/stormcraft/essence/ability/ActiveAbilityManager.java

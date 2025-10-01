@@ -1,0 +1,63 @@
+# Stormcraft-Essence Configuration
+
+# Passive Ability Requirements (SEL levels needed to unlock)
+abilities:
+  storm_resistance:
+    unlock_level: 10
+    # Damage reduction % per SEL (at unlock level)
+    base_reduction_percent: 5.0
+    # Additional reduction per SEL above unlock
+    per_level_bonus: 0.5
+    # Maximum reduction cap
+    max_reduction_percent: 50.0
+
+  lightning_reflexes:
+    unlock_level: 15
+    # Speed amplifier at unlock level (0 = Speed I, 1 = Speed II, etc)
+    base_speed_amplifier: 0
+    # Additional amplifier per 10 SEL above unlock
+    per_10_levels_bonus: 1
+    # Maximum speed amplifier cap
+    max_speed_amplifier: 3
+
+  stormborn:
+    unlock_level: 20
+    # Health regen per tick at unlock level (1.0 = half heart per second)
+    base_regen_amount: 0.5
+    # Additional regen per 5 SEL above unlock
+    per_5_levels_bonus: 0.1
+    # Maximum regen cap
+    max_regen_amount: 2.0
+
+# Essence Drain (when passives are active)
+drain:
+  # Base essence drain per second per active passive
+  base_drain_per_second: 1.0
+
+  # Additional drain based on SEL tier
+  sel_scaling:
+    enabled: true
+    # Additional drain % per 10 SEL (e.g., 0.1 = 10% more drain per 10 levels)
+    per_10_levels: 0.1
+
+  # Drain multiplier per active passive (stacks multiplicatively)
+  # 1 passive = 1.0x, 2 passives = 1.5x, 3 passives = 2.0x
+  multi_passive_multiplier: 1.5
+
+  # How often to drain essence (in ticks, 20 = 1 second)
+  drain_interval_ticks: 20
+
+# Messages
+messages:
+  prefix: "<gold>[Storm Essence]</gold> "
+  essence_gained: "<green>+{amount} Storm Essence! Total: {total} | SEL: {level}</green>"
+  passive_enabled: "<green>Enabled {ability}! Essence will drain at {rate}/s</green>"
+  passive_disabled: "<yellow>Disabled {ability}. Essence accrual resumed.</yellow>"
+  passive_locked: "<red>{ability} requires SEL {required} (you are SEL {current})</red>"
+  insufficient_essence: "<red>Not enough essence! {ability} drains {rate}/s</red>"
+  status_header: "<gold>━━━ Storm Essence Status ━━━</gold>"
+  status_sel: "<aqua>Storm Exposure Level:</aqua> <gold>{level}</gold>"
+  status_total: "<aqua>Total Storm Essence Earned:</aqua> <gold>{total}</gold>"
+  status_current: "<aqua>Current Essence Balance:</aqua> <gold>{balance}</gold>"
+  status_passives: "<aqua>Active Passives:</aqua> <gold>{passives}</gold>"
+  status_drain: "<aqua>Essence Drain Rate:</aqua> <gold>{rate}/s</gold>"
