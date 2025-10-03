@@ -21,6 +21,11 @@ commands:
     aliases: [se, stormessence]
     usage: /<command> [help|status|toggle|info]
     permission: stormcraft.essence.use
+  essenceconvert:
+    description: Convert vault essence into physical essence items
+    aliases: [econvert, ec]
+    usage: /<command> <amount>
+    permission: stormcraft.essence.use
 
 permissions:
   stormcraft.essence.use:

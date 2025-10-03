@@ -88,10 +88,11 @@ public class ActiveAbilityManager {
     }
 
     /**
-     * Storm Sense - Shows particle trail to nearest storm edge (30s duration, 10 essence, 60s cooldown)
+     * Storm Sense - Shows particle trail to nearest storm edge
      */
     private boolean useStormSense(Player player) {
-        if (!chargeEssence(player, 10)) {
+        int cost = config.getEssenceCost(PassiveAbility.STORM_SENSE);
+        if (!chargeEssence(player, cost)) {
             return false;
         }
 
@@ -101,7 +102,7 @@ public class ActiveAbilityManager {
         // Start particle trail task
         BukkitRunnable particleTask = new BukkitRunnable() {
             int ticks = 0;
-            final int duration = 600; // 30 seconds
+            final int duration = config.getStormSenseParticleDuration();
 
             @Override
             public void run() {
@@ -114,10 +115,12 @@ public class ActiveAbilityManager {
             }
         };
 
-        particleTask.runTaskTimer(plugin, 0L, 5L); // Every 5 ticks
+        int interval = config.getStormSenseParticleInterval();
+        particleTask.runTaskTimer(plugin, 0L, interval);
         stormSenseParticles.put(player.getUniqueId(), particleTask);
 
-        setCooldown(player, PassiveAbility.STORM_SENSE, 60000); // 60s cooldown
+        int cooldown = config.getCooldownSeconds(PassiveAbility.STORM_SENSE) * 1000;
+        setCooldown(player, PassiveAbility.STORM_SENSE, cooldown);
         player.sendMessage(Component.text("⛈ Storm Sense activated - Follow the particles to safety!")
                 .color(NamedTextColor.AQUA));
         return true;
@@ -164,14 +167,16 @@ public class ActiveAbilityManager {
      * Eye of the Storm - 10 minute immunity bubble (500 essence, 20 min cooldown)
      */
     private boolean useEyeOfStorm(Player player) {
-        if (!chargeEssence(player, 500)) {
+        int cost = config.getEssenceCost(PassiveAbility.EYE_OF_THE_STORM);
+        if (!chargeEssence(player, cost)) {
             return false;
         }
 
-        long duration = 10 * 60 * 1000; // 10 minutes
+        long duration = config.getEyeOfStormDuration() * 1000; // Convert seconds to milliseconds
         eyeOfStormExpiry.put(player.getUniqueId(), System.currentTimeMillis() + duration);
 
-        setCooldown(player, PassiveAbility.EYE_OF_THE_STORM, 20 * 60 * 1000); // 20 min cooldown
+        int cooldown = config.getCooldownSeconds(PassiveAbility.EYE_OF_THE_STORM) * 1000;
+        setCooldown(player, PassiveAbility.EYE_OF_THE_STORM, cooldown);
         player.sendMessage(Component.text("☁ Eye of the Storm activated - Storm immunity for 10 minutes!")
                 .color(NamedTextColor.GOLD));
 
@@ -200,15 +205,18 @@ public class ActiveAbilityManager {
      * Stormcaller - Summon lightning (100 essence, 30s cooldown)
      */
     private boolean useStormcaller(Player player) {
-        if (!chargeEssence(player, 100)) {
+        int cost = config.getEssenceCost(PassiveAbility.STORMCALLER);
+        if (!chargeEssence(player, cost)) {
             return false;
         }
 
         // Strike lightning where player is looking
-        Location target = player.getTargetBlock(null, 100).getLocation();
+        int range = (int) config.getStormcallerRange();
+        Location target = player.getTargetBlock(null, range).getLocation();
         player.getWorld().strikeLightning(target);
 
-        setCooldown(player, PassiveAbility.STORMCALLER, 30000); // 30s cooldown
+        int cooldown = config.getCooldownSeconds(PassiveAbility.STORMCALLER) * 1000;
+        setCooldown(player, PassiveAbility.STORMCALLER, cooldown);
         player.sendMessage(Component.text("⚡ Lightning strike called!")
                 .color(NamedTextColor.YELLOW));
 
@@ -219,7 +227,8 @@ public class ActiveAbilityManager {
      * Stormclear - Push storms away and boost their speed (2000 essence, 60 min cooldown)
      */
     private boolean useStormclear(Player player) {
-        if (!chargeEssence(player, 2000)) {
+        int cost = config.getEssenceCost(PassiveAbility.STORMCLEAR);
+        if (!chargeEssence(player, cost)) {
             return false;
         }
 
@@ -233,26 +242,30 @@ public class ActiveAbilityManager {
 
         int pushedCount = 0;
         Location playerLoc = player.getLocation();
+        double pushDistance = config.getStormclearPushDistance();
 
         for (TravelingStorm storm : storms) {
             Location stormLoc = storm.getCurrentLocation();
             if (!stormLoc.getWorld().equals(player.getWorld())) continue;
 
             double distance = playerLoc.distance(stormLoc);
-            if (distance <= 1000) {
+            if (distance <= pushDistance) {
                 // Push storm away - set new target opposite from player
                 Vector pushDirection = stormLoc.toVector().subtract(playerLoc.toVector()).normalize();
-                Location newTarget = stormLoc.clone().add(pushDirection.multiply(3000));
+                Location newTarget = stormLoc.clone().add(pushDirection.multiply(pushDistance * 3));
                 storm.setTargetLocation(newTarget);
 
-                // Boost storm speed temporarily (15 blocks/sec for 60 seconds)
-                storm.setTempSpeedBoost(15.0, 60);
+                // Boost storm speed temporarily
+                double speedBoost = config.getStormclearSpeedAmplifier();
+                int speedDuration = config.getStormclearSpeedDuration();
+                storm.setTempSpeedBoost(speedBoost, speedDuration);
 
                 pushedCount++;
             }
         }
 
-        setCooldown(player, PassiveAbility.STORMCLEAR, 60 * 60 * 1000); // 60 min cooldown
+        int cooldown = config.getCooldownSeconds(PassiveAbility.STORMCLEAR) * 1000;
+        setCooldown(player, PassiveAbility.STORMCLEAR, cooldown);
         player.sendMessage(Component.text("⚡ STORMCLEAR! " + pushedCount + " storms pushed away!")
                 .color(NamedTextColor.RED));
 

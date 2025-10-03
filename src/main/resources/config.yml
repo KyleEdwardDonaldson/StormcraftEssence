@@ -1,7 +1,8 @@
 # Stormcraft-Essence Configuration
 
-# Passive Ability Requirements (SEL levels needed to unlock)
+# Ability Requirements and Settings
 abilities:
+  # Passive Abilities
   storm_resistance:
     unlock_level: 10
     # Damage reduction % per SEL (at unlock level)
@@ -29,6 +30,43 @@ abilities:
     # Maximum regen cap
     max_regen_amount: 2.0
 
+  stormrider:
+    unlock_level: 100
+    # Stormrider is free - no essence drain
+    # Allows gliding and fall damage immunity during storms
+
+  # Active Abilities (Compass-Based)
+  storm_sense:
+    unlock_level: 10
+    essence_cost: 1
+    cooldown_seconds: 60
+    # Particle effect duration in ticks (600 = 30 seconds)
+    particle_duration_ticks: 600
+    # Ticks between particle spawns
+    particle_interval_ticks: 5
+
+  eye_of_the_storm:
+    unlock_level: 25
+    essence_cost: 500
+    cooldown_seconds: 1200     # 20 minutes
+    duration_seconds: 600      # 10 minutes
+    bubble_radius: 10.0        # Blocks
+
+  stormcaller:
+    unlock_level: 40
+    essence_cost: 100
+    cooldown_seconds: 30
+    damage: 5.0
+    range: 100.0
+
+  stormclear:
+    unlock_level: 50
+    essence_cost: 2000
+    cooldown_seconds: 3600     # 60 minutes
+    push_distance: 1000.0      # How far to push storm
+    speed_amplifier: 3         # Speed IV
+    speed_duration_seconds: 300 # 5 minutes
+
 # Essence Drain (when passives are active)
 drain:
   # Base essence drain per second per active passive
@@ -46,6 +84,30 @@ drain:
 
   # How often to drain essence (in ticks, 20 = 1 second)
   drain_interval_ticks: 20
+
+# Essence Crafting System
+crafting:
+  # Amount of essence required to craft a compass
+  compass_essence_cost: 100
+
+  # Conversion rate: vault essence to physical essence item
+  # (e.g., 10.0 means 10 vault essence = 1 physical essence)
+  essence_conversion_rate: 10.0
+
+# Storm Infusion System
+infusion:
+  # Base ticks required per infusion tier (~5 minutes per tier at default)
+  base_ticks_per_tier: 6000
+
+  # Minimum SEL required to use infusion system
+  min_sel_for_infusion: 10
+
+  # SEL-based tier caps
+  # SEL 10 = Tier 1 (20% protection)
+  # SEL 25 = Tier 2 (40% protection)
+  # SEL 50 = Tier 3 (60% protection)
+  # SEL 75 = Tier 4 (80% protection)
+  # SEL 100 = Tier 5 (95% protection)
 
 # Messages
 messages:

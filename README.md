@@ -69,7 +69,7 @@ All active abilities are triggered by right-clicking a compass. Use **Sneak + Ri
 ### Requirements
 - **Stormcraft** plugin (required)
 - **Vault** plugin (required for economy)
-- Paper/Spigot server running Minecraft 1.21+
+- Paper/Spigot server running Minecraft 1.21.3 - 1.21.9
 
 ### Setup
 1. Install Stormcraft and Vault
@@ -272,4 +272,4 @@ Proprietary - Quetzal's Stormcraft Server
 
 **Version:** 0.1.0
 **Last Updated:** 2025-10-02
-**Minecraft Version:** Paper 1.21.9
+**Minecraft Version:** Paper 1.21.3 - 1.21.9
